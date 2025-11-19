@@ -1,84 +1,114 @@
 package com.example.quizapp
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-data class RankItem(
-    val rank: Int,
-    val score: Int,
-    val date: String
-)
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.graphics.Color
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RankingScreen() {
-    val sampleRanks = listOf(
-        RankItem(1, 150, "2025/11/17"),
-        RankItem(2, 120, "2025/11/15"),
-        RankItem(3, 90, "2025/11/10"),
-        RankItem(4, 75, "2025/11/08"),
-        RankItem(5, 50, "2025/11/05") //임시
-    )
-
+fun RankingScreen(
+    rankings: List<RankItem>,
+    onClearRankings: () -> Unit
+) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("🏆 최고 기록 랭킹") })
+            TopAppBar(
+                title = { Text(text = "랭킹") }
+            )
         }
     ) { paddingValues ->
-        LazyColumn(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(horizontal = 16.dp),
-            contentPadding = PaddingValues(vertical = 8.dp)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(sampleRanks) { item ->
-                RankItemCard(item)
+            Text(
+                text = "역대 최고 점수 (Top 10)",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+
+            if (rankings.isEmpty()) {
+                Box(
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "아직 기록된 랭킹이 없습니다.", fontSize = 18.sp, color = Color.Gray)
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                    contentPadding = PaddingValues(vertical = 8.dp)
+                ) {
+                    itemsIndexed(rankings.take(10)) { index, item ->
+                        RankItemCard(index = index + 1, item = item)
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Button(
+                onClick = onClearRankings,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.8f))
+            ) {
+                Text("랭킹 초기화", fontSize = 18.sp)
             }
         }
     }
 }
 
 @Composable
-fun RankItemCard(item: RankItem) {
+fun RankItemCard(index: Int, item: RankItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        elevation = CardDefaults.cardElevation(2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "${item.rank}위",
-                fontSize = 20.sp,
-                modifier = Modifier.width(50.dp)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(text = "점수: ${item.score}점", fontSize = 16.sp, style = MaterialTheme.typography.titleMedium)
-                Text(text = "날짜: ${item.date}", fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "${index}.",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.width(30.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "${item.score}점",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
             }
+            Text(
+                text = item.date,
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewRankingScreen() {
-    RankingScreen()
 }
