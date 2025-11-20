@@ -13,8 +13,6 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MainScreen(
     onQuizStart: (String) -> Unit,
-    onNavigateToRanking: () -> Unit,
-    onNavigateToWrongAnswers: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -49,24 +47,9 @@ fun MainScreen(
             )
             Spacer(modifier = Modifier.height(32.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                SmallButton(
-                    text = "랭킹 보기",
-                    onClick = onNavigateToRanking,
-                    modifier = Modifier.weight(1f).padding(end = 8.dp)
-                )
-                SmallButton(
-                    text = "오답 노트",
-                    onClick = onNavigateToWrongAnswers, // 추가된 파라미터를 사용합니다.
-                    modifier = Modifier.weight(1f).padding(start = 8.dp)
-                )
             }
         }
     }
-}
 
 @Composable
 fun QuizSubjectButton(text: String, onClick: () -> Unit) {

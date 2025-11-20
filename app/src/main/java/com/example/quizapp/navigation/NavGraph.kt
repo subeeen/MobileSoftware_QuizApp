@@ -1,12 +1,11 @@
 package com.example.quizapp.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.quizapp.data.repository.ScoreRepository
 import com.example.quizapp.data.repository.WrongAnswerRepository
@@ -18,28 +17,21 @@ import com.example.quizapp.ui.wrongnote.WrongAnswerScreen
 
 @Composable
 fun NavGraph(
+    navController: NavHostController,
     scoreRepository: ScoreRepository,
-    wrongAnswerRepository: WrongAnswerRepository
+    wrongAnswerRepository: WrongAnswerRepository,
+    modifier: Modifier = Modifier
 ) {
-    val navController = rememberNavController()
-
-    val rankings by scoreRepository.rankings.observeAsState(initial = emptyList())
-    val wrongAnswers by wrongAnswerRepository.wrongAnswers.observeAsState(initial = emptyList())
-
     NavHost(
         navController = navController,
-        startDestination = "main"
+        startDestination = "main",
+        modifier = modifier
     ) {
+
         composable("main") {
             MainScreen(
                 onQuizStart = { subject ->
                     navController.navigate("quiz/$subject")
-                },
-                onNavigateToRanking = {
-                    navController.navigate("ranking")
-                },
-                onNavigateToWrongAnswers = {
-                    navController.navigate("wrong_note")
                 }
             )
         }
@@ -49,6 +41,7 @@ fun NavGraph(
             arguments = listOf(navArgument("subject") { type = NavType.StringType })
         ) { entry ->
             val subject = entry.arguments?.getString("subject") ?: ""
+
             QuizScreen(
                 quizSubject = subject,
                 onQuizFinish = { score ->
@@ -87,14 +80,14 @@ fun NavGraph(
 
         composable("ranking") {
             RankingScreen(
-                rankings = rankings,
+                rankings = scoreRepository.rankings.value ?: emptyList(),
                 onClearRankings = { scoreRepository.clear() }
             )
         }
 
         composable("wrong_note") {
             WrongAnswerScreen(
-                wrongAnswers = wrongAnswers,
+                wrongAnswers = wrongAnswerRepository.wrongAnswers.value ?: emptyList(),
                 onClearAll = { wrongAnswerRepository.clear() }
             )
         }

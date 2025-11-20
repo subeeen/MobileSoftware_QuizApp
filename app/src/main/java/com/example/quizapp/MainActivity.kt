@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import com.example.quizapp.data.repository.ScoreRepository
 import com.example.quizapp.data.repository.WrongAnswerRepository
 import com.example.quizapp.navigation.NavGraph
+import com.example.quizapp.ui.root.RootScreen
 import com.example.quizapp.ui.theme.QuizAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             QuizAppTheme {
-                NavGraph(
+                RootScreen(
                     scoreRepository = scoreRepository,
                     wrongAnswerRepository = wrongAnswerRepository
                 )
