@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.ui.ranking
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,10 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.IconButton
 import androidx.compose.ui.graphics.Color
+import com.example.quizapp.data.model.RankItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

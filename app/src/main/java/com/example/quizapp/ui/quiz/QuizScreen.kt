@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.ui.quiz
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +17,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.IconButton
+import com.example.quizapp.R
+import com.example.quizapp.ui.sound.SoundPlayer
+import com.example.quizapp.data.AllQuizzes
+import com.example.quizapp.data.model.Quiz
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

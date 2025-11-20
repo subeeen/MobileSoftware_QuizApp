@@ -1,16 +1,6 @@
-package com.example.quizapp
+package com.example.quizapp.data
 
-data class Quiz(
-    val subject: String,
-    val question: String,
-    val options: List<String>,
-    val answerIndex: Int
-)
-
-data class WrongAnswer(
-    val quiz: Quiz,
-    val selectedOptionIndex: Int
-)
+import com.example.quizapp.data.model.Quiz
 
 val AllQuizzes = listOf(
     Quiz(

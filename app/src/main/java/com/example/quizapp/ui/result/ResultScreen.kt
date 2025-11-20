@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.ui.result
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.IconButton
+import com.example.quizapp.data.AllQuizzes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

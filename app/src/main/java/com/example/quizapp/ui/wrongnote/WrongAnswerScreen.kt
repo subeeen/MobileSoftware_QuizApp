@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.ui.wrongnote
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import com.example.quizapp.data.model.WrongAnswer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
