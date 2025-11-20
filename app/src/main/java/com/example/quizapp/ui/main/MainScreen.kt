@@ -1,10 +1,14 @@
 package com.example.quizapp.ui.main
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -12,65 +16,117 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    onQuizStart: (String) -> Unit,
+    onQuizStart: (String) -> Unit
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("모바일 소프트웨어 퀴즈") })
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        "모바일 소프트웨어 퀴즈",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 20.sp
+                    )
+                }
+            )
         }
     ) { paddingValues ->
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            Spacer(modifier = Modifier.height(48.dp))
+
             Text(
-                text = "퀴즈 과목을 선택하세요",
-                fontSize = 24.sp,
+                text = "퀴즈 주제를 선택하세요",
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 24.dp)
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = "도전하고 싶은 분야를 골라볼까요?",
+                fontSize = 15.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            QuizCategoryCard(
+                title = "과학 상식",
+                emoji = "🔬",
+                onClick = { onQuizStart("과학 상식") },
+                containerColor = Color(0xFFE8EAF6)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            QuizSubjectButton(
-                text = "과학 상식",
-                onClick = { onQuizStart("과학 상식") }
+            QuizCategoryCard(
+                title = "스포츠 상식",
+                emoji = "⚽",
+                onClick = { onQuizStart("스포츠 상식") },
+                containerColor = Color(0xFFFCE4EC)
             )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            QuizSubjectButton(
-                text = "스포츠 상식",
-                onClick = { onQuizStart("스포츠 상식") }
-            )
-            Spacer(modifier = Modifier.height(32.dp))
-
-            }
         }
-    }
-
-@Composable
-fun QuizSubjectButton(text: String, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-    ) {
-        Text(text, fontSize = 20.sp)
     }
 }
 
 @Composable
-fun SmallButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.height(50.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
+fun QuizCategoryCard(
+    title: String,
+    emoji: String,
+    onClick: () -> Unit,
+    containerColor: Color
+) {
+    var isPressed by remember { mutableStateOf(false) }
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.97f else 1f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        ),
+        label = "scale"
+    )
+
+    Card(
+        onClick = {
+            isPressed = true
+            onClick()
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .scale(scale),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = containerColor
+        ),
+        elevation = CardDefaults.cardElevation(2.dp)
     ) {
-        Text(text)
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 24.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = emoji,
+                fontSize = 36.sp,
+                modifier = Modifier.padding(end = 18.dp)
+            )
+            Text(
+                text = title,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color(0xFF1F1F1F)
+            )
+        }
     }
 }
