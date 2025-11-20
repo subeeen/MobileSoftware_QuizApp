@@ -32,7 +32,7 @@ fun NavGraph() {
             startDestination = "main",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("main") { MainScreen() }
+            composable("main") { MainScreen(navController) }
             composable("wrongnote") { WrongNoteScreen() }
             composable("ranking") { RankingScreen() }
         }
