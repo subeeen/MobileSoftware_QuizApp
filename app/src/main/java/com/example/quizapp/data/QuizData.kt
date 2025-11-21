@@ -3,6 +3,7 @@ package com.example.quizapp.data
 import com.example.quizapp.data.model.Quiz
 
 val AllQuizzes = listOf(
+    // ---------------- 과학 상식 ----------------
     Quiz(
         subject = "과학 상식",
         question = "지구의 대기에서 가장 많은 비중을 차지하는 기체는 무엇인가요?",
@@ -63,6 +64,10 @@ val AllQuizzes = listOf(
         options = listOf("심장", "뇌", "간", "폐"),
         answerIndex = 2
     ),
+
+
+
+    // ---------------- 스포츠 상식 ----------------
     Quiz(
         subject = "스포츠 상식",
         question = "축구 경기에서 한 팀의 선수는 골키퍼를 포함하여 총 몇 명인가요?",
@@ -122,5 +127,134 @@ val AllQuizzes = listOf(
         question = "수영 경기에서 가장 빠른 영법은 무엇인가요?",
         options = listOf("배영", "평영", "접영", "자유형"),
         answerIndex = 3
+    ),
+
+
+
+// ---------------- 수도 상식 ----------------
+    Quiz(
+        subject = "수도 상식",
+        question = "대한민국의 수도는 무엇인가요?",
+        options = listOf("부산", "서울", "인천", "대전"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "일본의 수도는 무엇인가요?",
+        options = listOf("오사카", "삿포로", "도쿄", "교토"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "중국의 수도는 무엇인가요?",
+        options = listOf("상하이", "베이징", "광저우", "텐진"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "프랑스의 수도는 무엇인가요?",
+        options = listOf("니스", "파리", "리옹", "마르세유"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "이탈리아의 수도는 무엇인가요?",
+        options = listOf("밀라노", "베니스", "로마", "나폴리"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "영국의 수도는 무엇인가요?",
+        options = listOf("런던", "리버풀", "맨체스터", "버밍엄"),
+        answerIndex = 0
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "캐나다의 수도는 무엇인가요?",
+        options = listOf("토론토", "오타와", "몬트리올", "밴쿠버"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "호주의 수도는 무엇인가요?",
+        options = listOf("시드니", "멜버른", "캔버라", "브리즈번"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "독일의 수도는 무엇인가요?",
+        options = listOf("베를린", "프랑크푸르트", "뮌헨", "함부르크"),
+        answerIndex = 0
+    ),
+    Quiz(
+        subject = "수도 상식",
+        question = "러시아의 수도는 무엇인가요?",
+        options = listOf("상트페테르부르크", "모스크바", "카잔", "블라디보스토크"),
+        answerIndex = 1
+    ),
+
+
+
+
+    // ---------------- IT 상식 ----------------
+    Quiz(
+        subject = "IT 상식",
+        question = "HTTP의 기본 포트 번호는 무엇인가요?",
+        options = listOf("22", "80", "8080", "443"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "운영체제(OS)의 역할이 아닌 것은 무엇인가요?",
+        options = listOf("프로세스 관리", "메모리 관리", "UI 디자인", "파일 시스템 관리"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "컴퓨터가 이해하는 정보의 최소 단위는 무엇인가요?",
+        options = listOf("바이트", "비트", "워드", "니블"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "다음 중 오픈소스 운영체제는 무엇인가요?",
+        options = listOf("Windows", "macOS", "Linux", "iOS"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "HTML에서 웹페이지의 구조를 담당하는 태그 언어는 무엇인가요?",
+        options = listOf("CSS", "Python", "HTML", "JavaScript"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "파이썬에서 리스트의 길이를 구하는 함수는 무엇인가요?",
+        options = listOf("size()", "length()", "count()", "len()"),
+        answerIndex = 3
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "데이터베이스에서 데이터를 조회할 때 사용하는 명령어는?",
+        options = listOf("INSERT", "UPDATE", "SELECT", "DELETE"),
+        answerIndex = 2
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "SNS 암호화 방식 중 계정 보안에 가장 널리 사용되는 방식은?",
+        options = listOf("MD5", "SHA-256", "Base64", "ROT13"),
+        answerIndex = 1
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "다음 중 컴퓨터 네트워크 장비가 아닌 것은 무엇인가요?",
+        options = listOf("라우터", "스위치", "허브", "프린터"),
+        answerIndex = 3
+    ),
+    Quiz(
+        subject = "IT 상식",
+        question = "컴퓨터 부팅 시 가장 먼저 실행되는 프로그램은?",
+        options = listOf("BIOS / UEFI", "OS", "드라이버", "브라우저"),
+        answerIndex = 0
+    ),
     )
-)

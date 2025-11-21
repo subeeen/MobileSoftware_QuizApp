@@ -102,10 +102,10 @@ fun QuizScreen(
                         "문제 ${currentQuestionIndex + 1} / ${quizList.size}",
                         fontWeight = FontWeight.SemiBold
                     )
-                    Text(
-                        "점수: $score",
-                        fontWeight = FontWeight.SemiBold
-                    )
+//                    Text(
+//                        "점수: $score",
+//                        fontWeight = FontWeight.SemiBold
+//                    )
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))

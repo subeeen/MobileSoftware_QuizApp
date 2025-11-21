@@ -46,7 +46,7 @@ fun RankingScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Spacer(modifier = Modifier.height(42.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = "역대 최고 점수 TOP 10",

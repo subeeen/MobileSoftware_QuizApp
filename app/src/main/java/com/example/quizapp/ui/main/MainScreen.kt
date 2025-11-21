@@ -40,7 +40,7 @@ fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = "퀴즈 주제를 선택하세요",
@@ -56,7 +56,7 @@ fun MainScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             QuizCategoryCard(
                 title = "과학 상식",
@@ -72,6 +72,27 @@ fun MainScreen(
                 emoji = "⚽",
                 onClick = { onQuizStart("스포츠 상식") },
                 containerColor = Color(0xFFFCE4EC)
+            )
+
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // ---------------- 수도 상식 ----------------
+            QuizCategoryCard(
+                title = "수도 상식",
+                emoji = "🌍",
+                onClick = { onQuizStart("수도 상식") },
+                containerColor = Color(0xFFE3F2FD)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // ----------------  IT 상식 ----------------
+            QuizCategoryCard(
+                title = "IT 상식",
+                emoji = "💻",
+                onClick = { onQuizStart("IT 상식") },
+                containerColor = Color(0xFFE8F5E9)
             )
         }
     }
