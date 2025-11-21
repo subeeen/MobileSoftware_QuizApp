@@ -39,7 +39,12 @@ fun QuizScreen(
         onDispose { soundPlayer.release() }
     }
 
-    val quizList = remember { AllQuizzes.filter { it.subject == quizSubject }.shuffled() }
+    val quizList = remember { //10개 랜덤 출제
+        AllQuizzes
+            .filter { it.subject == quizSubject }
+            .shuffled()
+            .take(10)
+    }
 
     var currentQuestionIndex by remember { mutableStateOf(0) }
     var score by remember { mutableStateOf(0) }
@@ -102,10 +107,10 @@ fun QuizScreen(
                         "문제 ${currentQuestionIndex + 1} / ${quizList.size}",
                         fontWeight = FontWeight.SemiBold
                     )
-                    Text(
-                        "점수: $score",
-                        fontWeight = FontWeight.SemiBold
-                    )
+//                    Text(
+//                        "점수: $score",
+//                        fontWeight = FontWeight.SemiBold
+//                    )
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
