@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.ui.sound
 
 import android.content.Context
 import android.media.MediaPlayer
