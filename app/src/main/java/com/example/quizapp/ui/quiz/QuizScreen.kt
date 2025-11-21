@@ -39,7 +39,12 @@ fun QuizScreen(
         onDispose { soundPlayer.release() }
     }
 
-    val quizList = remember { AllQuizzes.filter { it.subject == quizSubject }.shuffled() }
+    val quizList = remember { //10개 랜덤 출제
+        AllQuizzes
+            .filter { it.subject == quizSubject }
+            .shuffled()
+            .take(10)
+    }
 
     var currentQuestionIndex by remember { mutableStateOf(0) }
     var score by remember { mutableStateOf(0) }
