@@ -74,6 +74,9 @@ fun NavGraph(
                 },
                 onNavigateToRanking = {
                     navController.navigate("ranking")
+                },
+                onNavigateToWrongNote = {
+                    navController.navigate("wrong_note")
                 }
             )
         }
